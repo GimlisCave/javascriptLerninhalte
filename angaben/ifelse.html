@@ -5,7 +5,7 @@
 	<title>JS Übungen - If-Else</title>
 	<meta name="author" content="Max Garzon">
 	<link href="src/style.css" rel="stylesheet">
-	<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
+		<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
 	</div>
 
 
-	<!-- Aufgabe 1: Aktuelle Jahreszeit -->
+	<!-- Aufgabe 1 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -46,22 +46,14 @@
 			<div id="out-jahreszeit" class="output"></div>
 
 			<script>
-				var monat = new Date().getMonth();
-				var jahreszeit;
-
-				if (monat >= 3 && monat <= 5) { jahreszeit = "🌸 Frühling"; }
-				else if (monat >= 6 && monat <= 8) { jahreszeit = "☀️ Sommer"; }
-				else if (monat >= 9 && monat <= 11) { jahreszeit = "🍂 Herbst"; }
-				else { jahreszeit = "❄️ Winter"; }
-
-				document.getElementById("out-jahreszeit").innerHTML =
-					"Aktueller Monat: " + (monat + 1) + " → Jahreszeit: <b>" + jahreszeit + "</b>";
+				// Aufgabe: Aktuelles Monat auslesen, Jahreszeit bestimmen
+				// Ergebnis in #out-jahreszeit ausgeben
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 2: Reisedestination -->
+	<!-- Aufgabe 2 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -84,27 +76,15 @@
 			<div id="out-reise" class="output"></div>
 
 			<script>
-				function empfehleReise() {
-					var budget = parseInt(document.getElementById("inp-budget").value);
-					var empfehlung;
-
-					if (budget < 500) {
-						empfehlung = "🏕️ Camping im Inland - perfekt für kleines Budget!";
-					} else if (budget <= 1500) {
-						empfehlung = "🇪🇺 Europa-Reise - Städtetrip oder Mittelmeer!";
-					} else {
-						empfehlung = "🌴 Fernreise - Bali, Thailand oder Karibik!";
-					}
-
-					document.getElementById("out-reise").innerHTML =
-						"Budget: <b>" + budget + " €</b> → " + empfehlung;
-				}
+				// Aufgabe: Schreibe die Funktion empfehleReise()
+				// Budget auslesen, per If-Else das passende Reiseziel bestimmen
+				// Ergebnis in #out-reise ausgeben
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 3: Gepäckcheck -->
+	<!-- Aufgabe 3 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -131,35 +111,15 @@
 			<div id="out-gepaeck" class="output"></div>
 
 			<script>
-				function gepäckCheck() {
-					var kg = parseFloat(document.getElementById("inp-gepaeck-kg").value);
-					var cm = parseFloat(document.getElementById("inp-gepaeck-cm").value);
-					var zuSchwer = kg > 10;
-					var zuGross = cm > 55;
-					var msg;
-
-					if (zuSchwer && zuGross) {
-						msg = "❌ Gepäck zu schwer UND zu groß - nicht erlaubt!";
-						document.getElementById("out-gepaeck").className = "output error";
-					} else if (zuSchwer) {
-						msg = "⚠️ Gepäck zu schwer (" + kg + " kg) - max. 10 kg erlaubt.";
-						document.getElementById("out-gepaeck").className = "output error";
-					} else if (zuGross) {
-						msg = "⚠️ Gepäck zu groß (" + cm + " cm) - max. 55 cm erlaubt.";
-						document.getElementById("out-gepaeck").className = "output error";
-					} else {
-						msg = "✅ Alles OK! " + kg + " kg, " + cm + " cm - Gepäck ist erlaubt.";
-						document.getElementById("out-gepaeck").className = "output success";
-					}
-
-					document.getElementById("out-gepaeck").innerHTML = msg;
-				}
+				// Aufgabe: Schreibe die Funktion gepäckCheck()
+				// Beide Werte prüfen: zu schwer (>10kg), zu groß (>55cm), beides, oder OK
+				// Ergebnis in #out-gepaeck ausgeben
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 4: Wochentag -->
+	<!-- Aufgabe 4 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -174,23 +134,9 @@
 			<div id="out-wochentag" class="output"></div>
 
 			<script>
-				var tag = new Date().getDay();
-				var tagName;
-				var typ;
-
-				if (tag == 0) { tagName = "Sonntag"; }
-				else if (tag == 1) { tagName = "Montag"; }
-				else if (tag == 2) { tagName = "Dienstag"; }
-				else if (tag == 3) { tagName = "Mittwoch"; }
-				else if (tag == 4) { tagName = "Donnerstag"; }
-				else if (tag == 5) { tagName = "Freitag"; }
-				else { tagName = "Samstag"; }
-
-				if (tag == 0 || tag == 6) { typ = "🎉 Wochenende!"; }
-				else { typ = "💼 Werktag"; }
-
-				document.getElementById("out-wochentag").innerHTML =
-					"Heute ist <b>" + tagName + "</b> → " + typ;
+				// Aufgabe: Wochentag auslesen, als Text ausgeben
+				// Zusätzlich prüfen: Werktag (Mo-Fr) oder Wochenende (Sa, So)?
+				// Ergebnis in #out-wochentag ausgeben
 			</script>
 		</div>
 	</div>

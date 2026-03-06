@@ -31,7 +31,7 @@
 	</div>
 
 
-	<!-- Aufgabe 1 -->
+	<!-- Aufgabe 1: Funktion ohne Rückgabe (console.log) -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -46,14 +46,19 @@
 			<button onclick="kontoauszug('Max Muster', 'AT12 3456 7890', 1250.50)">Auszug in Konsole</button>
 
 			<script>
-				// Aufgabe: Schreibe die Funktion kontoauszug(name, kontonr, saldo)
-				// Gibt Name, IBAN, Saldo und aktuelles Datum per console.log() aus
+				function kontoauszug(name, kontonr, saldo) {
+					console.log("=== Kontoauszug ===");
+					console.log("Inhaber: " + name);
+					console.log("IBAN: " + kontonr);
+					console.log("Saldo: " + saldo + " €");
+					console.log("Stand: " + new Date().toLocaleDateString());
+				}
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 2 -->
+	<!-- Aufgabe 2: Funktion mit Rückgabe -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -79,14 +84,26 @@
 			<div id="out-trinkgeld" class="output"></div>
 
 			<script>
-				// Aufgabe: Schreibe die Funktion trinkgeld(betrag, prozent) mit return
-				// Dann berechneTriinkgeld(): Werte auslesen, Funktion aufrufen, Ergebnis in #out-trinkgeld
+				function trinkgeld(betrag, prozent) {
+					return betrag * (prozent / 100);
+				}
+
+				function berechneTriinkgeld() {
+					var betrag = parseFloat(document.getElementById("inp-rechnung").value);
+					var prozent = parseFloat(document.getElementById("inp-tg-prozent").value);
+					var tg = trinkgeld(betrag, prozent);
+					var gesamt = betrag + tg;
+
+					document.getElementById("out-trinkgeld").innerHTML =
+						"Trinkgeld: <b>" + tg.toFixed(2) + " €</b><br>" +
+						"Gesamt zu zahlen: <b>" + gesamt.toFixed(2) + " €</b>";
+				}
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 3 -->
+	<!-- Aufgabe 3: Funktion mit Standardwerten -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -116,14 +133,28 @@
 			<div id="out-zinsen" class="output"></div>
 
 			<script>
-				// Aufgabe: Funktion zinsen(kapital, zinssatz = 3, jahre = 1) mit Standardparametern
-				// berechneZinsen(): Eingaben auslesen, Funktion aufrufen, Ergebnis in #out-zinsen
+				function zinsen(kapital, zinssatz = 3, jahre = 1) {
+					return kapital * (zinssatz / 100) * jahre;
+				}
+
+				function berechneZinsen() {
+					var kapital = parseFloat(document.getElementById("inp-kapital").value) || 0;
+					var zins = parseFloat(document.getElementById("inp-zins").value) || undefined;
+					var jahre = parseFloat(document.getElementById("inp-jahre").value) || undefined;
+
+					var ertrag = zinsen(kapital, zins, jahre);
+					var gesamt = kapital + ertrag;
+
+					document.getElementById("out-zinsen").innerHTML =
+						"Zinsen: <b>" + ertrag.toFixed(2) + " €</b><br>" +
+						"Gesamtkapital nach Laufzeit: <b>" + gesamt.toFixed(2) + " €</b>";
+				}
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 4 -->
+	<!-- Aufgabe 4: Button onclick + Währungsrechner -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -149,15 +180,18 @@
 			<div id="out-waehrung" class="output"></div>
 
 			<script>
-				// Aufgabe: Schreibe die Funktion rechneUm(waehrung, kurs)
-				// Sie soll den Euro-Betrag mit dem Kurs multiplizieren
-				// Ergebnis in #out-waehrung ausgeben
+				function rechneUm(waehrung, kurs) {
+					var euro = parseFloat(document.getElementById("inp-euro").value);
+					var ergebnis = euro * kurs;
+					document.getElementById("out-waehrung").innerHTML =
+						euro.toFixed(2) + " € = <b>" + ergebnis.toFixed(2) + " " + waehrung + "</b>";
+				}
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 5 -->
+	<!-- Aufgabe 5: Note berechnen -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -183,9 +217,24 @@
 			<div id="out-score" class="output"></div>
 
 			<script>
-				// Aufgabe: Funktion sparquote(einkommen, ausgaben) schreiben (gibt % zurück)
-				// berechneScore(): Sparquote berechnen, per If-Else bewerten, in #out-score ausgeben
-				// Bewertung: ≥30% ausgezeichnet, ≥15% gut, ≥5% knapp, sonst kritisch
+				function sparquote(einkommen, ausgaben) {
+					return ((einkommen - ausgaben) / einkommen) * 100;
+				}
+
+				function berechneScore() {
+					var einkommen = parseFloat(document.getElementById("inp-einkommen").value);
+					var ausgaben = parseFloat(document.getElementById("inp-ausgaben").value);
+					var quote = sparquote(einkommen, ausgaben);
+					var bewertung;
+
+					if (quote >= 30) { bewertung = "⭐ Ausgezeichnet"; }
+					else if (quote >= 15) { bewertung = "✅ Gut"; }
+					else if (quote >= 5) { bewertung = "⚠️ Knapp"; }
+					else { bewertung = "❌ Kritisch - Ausgaben übersteigen fast das Einkommen"; }
+
+					document.getElementById("out-score").innerHTML =
+						"Sparquote: <b>" + quote.toFixed(1) + "%</b> → " + bewertung;
+				}
 			</script>
 		</div>
 	</div>

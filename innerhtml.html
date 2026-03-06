@@ -31,7 +31,7 @@
 	</div>
 
 
-	<!-- Aufgabe 1 -->
+	<!-- Aufgabe 1: Einfaches innerHTML -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -55,14 +55,16 @@
 			<div id="out-produktname" class="output"></div>
 
 			<script>
-				// Aufgabe: Schreibe die Funktion zeigeProduktname()
-				// Sie soll den Wert von #inp-produktname fett formatiert in #out-produktname schreiben
+				function zeigeProduktname() {
+					var name = document.getElementById("inp-produktname").value;
+					document.getElementById("out-produktname").innerHTML = "<b>" + name + "</b>";
+				}
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 2 -->
+	<!-- Aufgabe 2: Mehrere Felder kombinieren -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -97,14 +99,21 @@
 			<div id="out-karte" class="output"></div>
 
 			<script>
-				// Aufgabe: Schreibe die Funktion generiereKarte()
-				// Sie soll Name, Preis und Beschreibung kombiniert in #out-karte ausgeben
+				function generiereKarte() {
+					var name = document.getElementById("karte-name").value;
+					var preis = document.getElementById("karte-preis").value;
+					var beschr = document.getElementById("karte-beschr").value;
+
+					document.getElementById("out-karte").innerHTML =
+						"<b>" + name + "</b><br>" + preis + " €<br>" +
+						"Info: " + beschr;
+				}
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 3 -->
+	<!-- Aufgabe 3: innerHTML erweitern vs. überschreiben -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -130,9 +139,12 @@
 			<div id="out-warenkorb" class="output"></div>
 
 			<script>
-				// Aufgabe: Schreibe die Funktion artikelHinzufuegen()
-				// Jeder Klick soll den eingegebenen Artikel an #out-warenkorb anhängen (+=)
-				// Nach dem Hinzufügen soll das Eingabefeld geleert werden
+				function artikelHinzufuegen() {
+					var artikel = document.getElementById("warenkorb-artikel").value;
+					if (artikel === "") return;
+					document.getElementById("out-warenkorb").innerHTML += "• " + artikel + "<br>";
+					document.getElementById("warenkorb-artikel").value = "";
+				}
 			</script>
 		</div>
 	</div>

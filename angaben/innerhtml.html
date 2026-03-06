@@ -31,7 +31,7 @@
 	</div>
 
 
-	<!-- Aufgabe 1: Einfaches innerHTML -->
+	<!-- Aufgabe 1 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -55,16 +55,14 @@
 			<div id="out-produktname" class="output"></div>
 
 			<script>
-				function zeigeProduktname() {
-					var name = document.getElementById("inp-produktname").value;
-					document.getElementById("out-produktname").innerHTML = "<b>" + name + "</b>";
-				}
+				// Aufgabe: Schreibe die Funktion zeigeProduktname()
+				// Sie soll den Wert von #inp-produktname fett formatiert in #out-produktname schreiben
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 2: Mehrere Felder kombinieren -->
+	<!-- Aufgabe 2 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -99,21 +97,14 @@
 			<div id="out-karte" class="output"></div>
 
 			<script>
-				function generiereKarte() {
-					var name = document.getElementById("karte-name").value;
-					var preis = document.getElementById("karte-preis").value;
-					var beschr = document.getElementById("karte-beschr").value;
-
-					document.getElementById("out-karte").innerHTML =
-						"<b>" + name + "</b><br>" + preis + " €<br>" +
-						"Info: " + beschr;
-				}
+				// Aufgabe: Schreibe die Funktion generiereKarte()
+				// Sie soll Name, Preis und Beschreibung kombiniert in #out-karte ausgeben
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 3: innerHTML erweitern vs. überschreiben -->
+	<!-- Aufgabe 3 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -139,12 +130,9 @@
 			<div id="out-warenkorb" class="output"></div>
 
 			<script>
-				function artikelHinzufuegen() {
-					var artikel = document.getElementById("warenkorb-artikel").value;
-					if (artikel === "") return;
-					document.getElementById("out-warenkorb").innerHTML += "• " + artikel + "<br>";
-					document.getElementById("warenkorb-artikel").value = "";
-				}
+				// Aufgabe: Schreibe die Funktion artikelHinzufuegen()
+				// Jeder Klick soll den eingegebenen Artikel an #out-warenkorb anhängen (+=)
+				// Nach dem Hinzufügen soll das Eingabefeld geleert werden
 			</script>
 		</div>
 	</div>

@@ -80,7 +80,7 @@
 				</div>
 			</div>
 
-			<!-- Gutscheincode -->
+			<!-- Gutscheincode (optional) -->
 			<div class="quiz-question">
 				<div class="quiz-q">Gutscheincode <span style="color:var(--text-dim)">(optional)</span></div>
 				<div class="quiz-row">
@@ -127,35 +127,111 @@
 
 <script>
 
+function toggleHint(id) {
+	var el = document.getElementById(id);
+	el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+
 var kategoriePreise = {
 	"standard": 29,
 	"vip": 79,
 	"backstage": 149
 };
 
+// Rabatte
 var gutscheincodes = {
 	"SAVE10": 10,
 	"SAVE20": 20,
 	"GRATIS": 100
 };
 
-function toggleHint(id) {
-	var el = document.getElementById(id);
-	el.style.display = (el.style.display === "block") ? "none" : "block";
-}
+function formularPruefen() {
+	var name = document.getElementById("f-name").value.trim();
+	var alter = parseInt(document.getElementById("f-alter").value);
+	var email = document.getElementById("f-email").value.trim();
+	var tickets = parseInt(document.getElementById("f-tickets").value);
+	var gutschein = document.getElementById("f-gutschein").value.trim().toUpperCase();
+	var kategorie = document.getElementById("f-kategorie").value.trim().toLowerCase();
+	var output = document.getElementById("out-formular");
 
-// Aufgabe: Schreibe die Funktion formularPruefen()
-// Alle Felder auslesen und validieren:
-//   - Name: mindestens 3 Zeichen
-//   - Alter: zwischen 16 und 99
-//   - E-Mail: muss @ und . enthalten (indexOf verwenden)
-//   - Tickets: zwischen 1 und 5
-//   - Kategorie: muss in kategoriePreise vorhanden sein
-//   - Gutschein: wenn eingegeben, muss in gutscheincodes vorhanden sein
-// Fehlerhafte Felder: roter Rahmen; korrekte Felder: grüner Rahmen
-// Bei Fehlern: alle Fehler gesammelt in #out-formular ausgeben
-// Bei Erfolg: Gesamtpreis berechnen (inkl. Rabatt), #zusammenfassung-section einblenden
-//             und Buchungsdetails in #out-zusammenfassung ausgeben
+	var fehler = [];
+
+	// Alle Felder validieren
+	if (name.length < 3) {
+		fehler.push("Name ist zu kurz (mindestens 3 Zeichen)");
+		document.getElementById("f-name").style.border = "1px solid var(--red)";
+	} else {
+		document.getElementById("f-name").style.border = "1px solid var(--green)";
+	}
+
+	if (!alter || alter < 16 || alter > 99) {
+		fehler.push("Alter muss zwischen 16 und 99 liegen");
+		document.getElementById("f-alter").style.border = "1px solid var(--red)";
+	} else {
+		document.getElementById("f-alter").style.border = "1px solid var(--green)";
+	}
+
+	// E-Mail einfach prüfen
+	if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+		fehler.push("E-Mail-Adresse ist ungültig");
+		document.getElementById("f-email").style.border = "1px solid var(--red)";
+	} else {
+		document.getElementById("f-email").style.border = "1px solid var(--green)";
+	}
+
+	if (!tickets || tickets < 1 || tickets > 5) {
+		fehler.push("Ticketanzahl muss zwischen 1 und 5 liegen");
+		document.getElementById("f-tickets").style.border = "1px solid var(--red)";
+	} else {
+		document.getElementById("f-tickets").style.border = "1px solid var(--green)";
+	}
+
+	if (!kategoriePreise[kategorie]) {
+		fehler.push("Ungültige Kategorie - erlaubt: standard, vip, backstage");
+		document.getElementById("f-kategorie").style.border = "1px solid var(--red)";
+	} else {
+		document.getElementById("f-kategorie").style.border = "1px solid var(--green)";
+	}
+
+	// Gutschein prüfen
+	var rabatt = 0;
+	if (gutschein !== "") {
+		if (gutscheincodes[gutschein] !== undefined) {
+			rabatt = gutscheincodes[gutschein];
+			document.getElementById("f-gutschein").style.border = "1px solid var(--green)";
+		} else {
+			fehler.push("Gutscheincode ungültig");
+			document.getElementById("f-gutschein").style.border = "1px solid var(--red)";
+		}
+	}
+
+	// Fehler ausgeben
+	if (fehler.length > 0) {
+		output.className = "output error";
+		output.innerHTML = "⚠️ Bitte korrigiere folgende Felder:<br>• " + fehler.join("<br>• ");
+		return;
+	}
+
+	// Preis berechnen
+	var preisProTicket = kategoriePreise[kategorie];
+	var gesamtpreis = preisProTicket * tickets;
+	var ersparnis = gesamtpreis * (rabatt / 100);
+	var endpreis = gesamtpreis - ersparnis;
+
+	// Erfolgreich - Zusammenfassung anzeigen
+	output.className = "output success";
+	output.innerHTML = "✅ Validierung erfolgreich!";
+
+	document.getElementById("zusammenfassung-section").style.display = "block";
+	document.getElementById("out-zusammenfassung").innerHTML =
+		"<b>Buchungsbestätigung</b><br><br>" +
+		"👤 Name: " + name + "<br>" +
+		"📧 E-Mail: " + email + "<br>" +
+		"🎟️ " + tickets + "× " + kategorie.charAt(0).toUpperCase() + kategorie.slice(1) +
+		" Ticket (je " + preisProTicket + " €)<br>" +
+		(rabatt > 0 ? "🏷️ Rabatt (" + gutschein + "): −" + ersparnis.toFixed(2) + " €<br>" : "") +
+		"<br><b>Gesamtbetrag: " + endpreis.toFixed(2) + " €</b>";
+}
 
 </script>
 

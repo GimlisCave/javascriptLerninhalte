@@ -31,7 +31,7 @@
 	</div>
 
 
-	<!-- Aufgabe 1: Einfache Schleife -->
+	<!-- Aufgabe 1 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -53,23 +53,15 @@
 			<div id="out-countdown" class="output mono"></div>
 
 			<script>
-				function starteCountdown() {
-					var start = parseInt(document.getElementById("inp-countdown").value);
-					var ausgabe = "";
-
-					for (var i = start; i >= 1; i--) {
-						ausgabe += i + "...\n";
-					}
-					ausgabe += "Musik starten!";
-
-					document.getElementById("out-countdown").innerHTML = ausgabe;
-				}
+				// Aufgabe: Schreibe die Funktion starteCountdown()
+				// For-Schleife von eingegebener Zahl abwärts bis 1
+				// Am Ende "Musik starten!" anhängen, alles in #out-countdown
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 2: Playlist generator -->
+	<!-- Aufgabe 2 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -91,40 +83,26 @@
 			<div id="out-playlist" class="output mono"></div>
 
 			<script>
-				function generierePlaylist() {
-					var anzahl = parseInt(document.getElementById("inp-tracks").value);
-					if (anzahl < 1 || anzahl > 8) {
-						document.getElementById("out-playlist").innerHTML = "Bitte 1-8 Tracks eingeben.";
-						return;
-					}
+				// Vordefiniertes Array mit Songs (nicht ändern):
+				var songs = [
+					{ titel: "Blinding Lights", dauer: "3:20" },
+					{ titel: "Levitating", dauer: "3:23" },
+					{ titel: "Stay", dauer: "2:38" },
+					{ titel: "Peaches", dauer: "3:18" },
+					{ titel: "Good 4 U", dauer: "2:58" },
+					{ titel: "Industry Baby", dauer: "3:32" },
+					{ titel: "Montero", dauer: "2:18" },
+					{ titel: "Heat Waves", dauer: "3:59" }
+				];
 
-					var songs = [
-						{ titel: "Blinding Lights", dauer: "3:20" },
-						{ titel: "Levitating", dauer: "3:23" },
-						{ titel: "Stay", dauer: "2:38" },
-						{ titel: "Peaches", dauer: "3:18" },
-						{ titel: "Good 4 U", dauer: "2:58" },
-						{ titel: "Industry Baby", dauer: "3:32" },
-						{ titel: "Montero", dauer: "2:18" },
-						{ titel: "Heat Waves", dauer: "3:59" }
-					];
-
-					var ausgabe = "🎧 Deine Playlist (" + anzahl + " Tracks)\n";
-					ausgabe += "─".repeat(35) + "\n";
-
-					for (var i = 0; i < anzahl; i++) {
-						ausgabe += (i + 1) + ". " + songs[i].titel + "  [" + songs[i].dauer + "]\n";
-					}
-
-					document.getElementById("out-playlist").className = "output mono";
-					document.getElementById("out-playlist").innerHTML = ausgabe;
-				}
+				// Aufgabe: Schreibe die Funktion generierePlaylist()
+				// Anzahl auslesen, For-Schleife über das Array, nummeriert in #out-playlist ausgeben
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 3: Sterne-Bewertung -->
+	<!-- Aufgabe 3 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -147,35 +125,16 @@
 			<div id="out-sterne" class="output"></div>
 
 			<script>
-				function zeigeSterne() {
-					var wert = parseInt(document.getElementById("inp-sterne").value);
-					if (wert < 1 || wert > 5) {
-						document.getElementById("out-sterne").innerHTML = "Bitte 1-5 eingeben.";
-						return;
-					}
-
-					var sterne = "";
-					for (var i = 1; i <= 5; i++) {
-						if (i <= wert) { sterne += "★"; }
-						else { sterne += "☆"; }
-					}
-
-					var text;
-					if (wert == 5) { text = "Absolut outstanding!"; }
-					else if (wert == 4) { text = "Sehr gut!"; }
-					else if (wert == 3) { text = "Solide."; }
-					else if (wert == 2) { text = "Ausbaufähig."; }
-					else { text = "Nicht empfehlenswert."; }
-
-					document.getElementById("out-sterne").innerHTML =
-						"<span style='font-size: 20px; letter-spacing: 3px;'>" + sterne + "</span>  " + text;
-				}
+				// Aufgabe: Schreibe die Funktion zeigeSterne()
+				// For-Schleife von 1-5: wenn i <= wert dann ★, sonst ☆
+				// Zusätzlich per If-Else einen Bewertungstext bestimmen
+				// Alles in #out-sterne ausgeben
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 4: Verschachtelte Schleife - Setlist -->
+	<!-- Aufgabe 4 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -201,27 +160,16 @@
 			<div id="out-setlist" class="output mono"></div>
 
 			<script>
-				function generiereSetlist() {
-					var sets = parseInt(document.getElementById("inp-sets").value);
-					var songsProSet = parseInt(document.getElementById("inp-songs-pro-set").value);
-					var ausgabe = "🎤 Konzert-Setlist\n" + "─".repeat(25) + "\n";
-
-					for (var s = 1; s <= sets; s++) {
-						ausgabe += "\nSet " + s + ":\n";
-						for (var song = 1; song <= songsProSet; song++) {
-							ausgabe += "  Track " + s + "." + song + "\n";
-						}
-					}
-
-					document.getElementById("out-setlist").className = "output mono";
-					document.getElementById("out-setlist").innerHTML = ausgabe;
-				}
+				// Aufgabe: Schreibe die Funktion generiereSetlist()
+				// Äußere Schleife: Sets, innere Schleife: Songs pro Set
+				// Ausgabe: "Set 1:", darunter "  Track 1.1", "  Track 1.2" etc.
+				// Ergebnis in #out-setlist
 			</script>
 		</div>
 	</div>
 
 
-	<!-- Aufgabe 5: Lautstärke-Balken -->
+	<!-- Aufgabe 5 -->
 	<div class="section">
 		<div class="section-header">
 			<div>
@@ -244,20 +192,10 @@
 			<div id="out-lautstaerke" class="output"></div>
 
 			<script>
-				function zeigeLautstaerke() {
-					var vol = parseInt(document.getElementById("inp-lautstaerke").value);
-					var balken = Math.round(vol / 10);
-					var anzeige = "";
-
-					for (var i = 0; i < 10; i++) {
-						if (i < balken) { anzeige += "█"; }
-						else { anzeige += "░"; }
-					}
-
-					document.getElementById("out-lautstaerke").innerHTML =
-						"<span style='font-family: Geist Mono, monospace; font-size: 18px; letter-spacing: 2px;'>" +
-						anzeige + "</span>  " + vol + "%";
-				}
+				// Aufgabe: Schreibe die Funktion zeigeLautstaerke()
+				// Lautstärke auf 10 Balken umrechnen (Math.round(vol / 10))
+				// For-Schleife: gefüllte Balken █ und leere ░ zusammenbauen
+				// Ergebnis in #out-lautstaerke ausgeben
 			</script>
 		</div>
 	</div>
