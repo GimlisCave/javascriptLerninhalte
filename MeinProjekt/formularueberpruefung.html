@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Übungen - Formularüberprüfung</title>
+	<meta name="author" content="Max Garzon">
+	<link href="src/style.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
+</head>
+<body>
+
+<nav>
+	<div class="nav-logo">
+		<span class="logo-icon">JS</span>
+		JS Übungen
+	</div>
+	<a href="innerhtml.html">InnerHTML</a>
+	<a href="ifelse.html">If-Else</a>
+	<a href="funktionen.html">Funktionen</a>
+	<a href="for.html">For-Schleife</a>
+	<a href="formularueberpruefung.html" class="active">Formular</a>
+	<a href="eigenes-projekt.html">Eigenes Projekt</a>
+</nav>
+
+<main>
+	<div class="page-header">
+		<div class="badge">✦ Formularüberprüfung</div>
+		<h1>Event-Anmeldung</h1>
+		<p>Formulare müssen vor dem Absenden geprüft werden - auf fehlende und fehlerhafte Eingaben.<br>
+		Hier baust du eine vollständige Event-Anmeldung mit Validierung, Feedback und Hilfetexten.</p>
+	</div>
+
+
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">📝</div>Anmeldeformular</div>
+				<div class="section-desc">Formularvalidierung · Pflichtfelder, Formate, Hilfetexte, visuelles Feedback</div>
+			</div>
+		</div>
+		<div class="section-body">
+
+			<!-- Name -->
+			<div class="quiz-question">
+				<div class="quiz-q">Vor- und Nachname <span style="color:var(--red)">*</span></div>
+				<div class="quiz-row">
+					<input type="text" id="f-name" placeholder="z.B. Max Mustermann">
+				</div>
+			</div>
+
+			<!-- Alter -->
+			<div class="quiz-question">
+				<div class="quiz-q">Alter <span style="color:var(--red)">*</span> (16-99)</div>
+				<div class="quiz-row">
+					<input type="number" id="f-alter" placeholder="z.B. 21">
+					<button class="hint-btn" onclick="toggleHint('hint-alter')">Tipp</button>
+				</div>
+				<div class="hint-text" id="hint-alter">
+					💡 Das Event ist ab 16 Jahren zugänglich. Bitte gib dein tatsächliches Alter ein.
+				</div>
+			</div>
+
+			<!-- E-Mail -->
+			<div class="quiz-question">
+				<div class="quiz-q">E-Mail-Adresse <span style="color:var(--red)">*</span></div>
+				<div class="quiz-row">
+					<input type="text" id="f-email" placeholder="z.B. max@beispiel.at">
+					<button class="hint-btn" onclick="toggleHint('hint-email')">Tipp</button>
+				</div>
+				<div class="hint-text" id="hint-email">
+					💡 Die E-Mail muss ein @-Zeichen und einen Punkt enthalten, z.B. name@domain.at
+				</div>
+			</div>
+
+			<!-- Ticketanzahl -->
+			<div class="quiz-question">
+				<div class="quiz-q">Anzahl Tickets <span style="color:var(--red)">*</span> (1-5 pro Person)</div>
+				<div class="quiz-row">
+					<input type="number" id="f-tickets" placeholder="z.B. 2" min="1" max="5">
+				</div>
+			</div>
+
+			<!-- Gutscheincode -->
+			<div class="quiz-question">
+				<div class="quiz-q">Gutscheincode <span style="color:var(--text-dim)">(optional)</span></div>
+				<div class="quiz-row">
+					<input type="text" id="f-gutschein" placeholder="z.B. SAVE20">
+					<button class="hint-btn" onclick="toggleHint('hint-gutschein')">Tipp</button>
+				</div>
+				<div class="hint-text" id="hint-gutschein">
+					💡 Gültige Codes: SAVE10 (10% Rabatt), SAVE20 (20% Rabatt), GRATIS (100% Rabatt).
+				</div>
+			</div>
+
+			<!-- Kategorie -->
+			<div class="quiz-question" style="border-bottom: none;">
+				<div class="quiz-q">Ticket-Kategorie <span style="color:var(--red)">*</span></div>
+				<div class="quiz-row">
+					<input type="text" id="f-kategorie" placeholder="standard / vip / backstage">
+					<button class="hint-btn" onclick="toggleHint('hint-kategorie')">Tipp</button>
+				</div>
+				<div class="hint-text" id="hint-kategorie">
+					💡 Erlaubte Kategorien: standard (€29), vip (€79), backstage (€149)
+				</div>
+			</div>
+
+			<br>
+			<button onclick="formularPruefen()">Anmeldung absenden</button>
+			<div id="out-formular" class="output"></div>
+		</div>
+	</div>
+
+
+	<div class="section" id="zusammenfassung-section" style="display:none;">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">✅</div>Anmeldebestätigung</div>
+				<div class="section-desc">Deine Buchung ist eingegangen</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<div id="out-zusammenfassung" class="output success"></div>
+		</div>
+	</div>
+
+</main>
+
+<script>
+
+var kategoriePreise = {
+	"standard": 29,
+	"vip": 79,
+	"backstage": 149
+};
+
+var gutscheincodes = {
+	"SAVE10": 10,
+	"SAVE20": 20,
+	"GRATIS": 100
+};
+
+function toggleHint(id) {
+	var el = document.getElementById(id);
+	el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+
+// Aufgabe: Schreibe die Funktion formularPruefen()
+// Alle Felder auslesen und validieren:
+//   - Name: mindestens 3 Zeichen
+//   - Alter: zwischen 16 und 99
+//   - E-Mail: muss @ und . enthalten (indexOf verwenden)
+//   - Tickets: zwischen 1 und 5
+//   - Kategorie: muss in kategoriePreise vorhanden sein
+//   - Gutschein: wenn eingegeben, muss in gutscheincodes vorhanden sein
+// Fehlerhafte Felder: roter Rahmen; korrekte Felder: grüner Rahmen
+// Bei Fehlern: alle Fehler gesammelt in #out-formular ausgeben
+// Bei Erfolg: Gesamtpreis berechnen (inkl. Rabatt), #zusammenfassung-section einblenden
+//             und Buchungsdetails in #out-zusammenfassung ausgeben
+
+</script>
+
+</body>
+</html>

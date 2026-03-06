@@ -1,0 +1,463 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Fitness Tracker - Eigenes Projekt</title>
+	<meta name="author" content="Max Garzon">
+	<link href="src/style.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
+</head>
+<body>
+
+<nav>
+	<div class="nav-logo">
+		<span>💪</span>
+		FitTrack
+	</div>
+	<a href="innerhtml.html">InnerHTML</a>
+	<a href="ifelse.html">If-Else</a>
+	<a href="funktionen.html">Funktionen</a>
+	<a href="for.html">For-Schleife</a>
+	<a href="formularueberpruefung.html">Formular</a>
+	<a href="eigenes-projekt.html" class="active">Eigenes Projekt</a>
+</nav>
+
+<main>
+
+	<div class="page-header">
+		<div class="badge">✦ Eigenes Projekt</div>
+		<h1>Fitness Tracker</h1>
+		<p>Ein interaktiver Trainingsplaner, der alle gelernten JavaScript-Konzepte kombiniert:<br>
+		InnerHTML, If-Else, Funktionen, For-Schleifen und Formularvalidierung.</p>
+	</div>
+
+
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">👋</div>
+					Personalisierung
+				</div>
+				<div class="section-desc">InnerHTML · Der Benutzer gibt seinen Athleten-Namen ein</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<div class="input-row">
+				<div>
+					<label>Dein Name</label>
+					<input type="text" id="input-name" placeholder="z.B. Max">
+				</div>
+				<div style="align-self: flex-end;">
+					<button onclick="setBegruessung()">Bestätigen</button>
+				</div>
+			</div>
+			<div id="output-begruessung" class="output info"></div>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">📊</div>
+					BMI & Trainingsempfehlung
+				</div>
+				<div class="section-desc">If-Else · Berechnung und Kategorisierung des BMI</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<div class="input-row">
+				<div>
+					<label>Gewicht (kg)</label>
+					<input type="number" id="input-gewicht" placeholder="70">
+				</div>
+				<div>
+					<label>Größe (cm)</label>
+					<input type="number" id="input-groesse" placeholder="175">
+				</div>
+				<div style="align-self: flex-end;">
+					<button onclick="berechneBMI()">Berechnen</button>
+				</div>
+			</div>
+			<div id="output-bmi" class="output"></div>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">🔥</div>
+					Kalorienverbrauch
+				</div>
+				<div class="section-desc">Funktionen · Berechnung des Kalorienverbrauchs pro Sportart</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<div class="stats-grid">
+				<div class="stat-card">
+					<div class="stat-label">Laufen</div>
+					<div class="stat-value" id="stat-laufen">—</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Radfahren</div>
+					<div class="stat-value" id="stat-rad">—</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Schwimmen</div>
+					<div class="stat-value" id="stat-schwimmen">—</div>
+				</div>
+			</div>
+			<div class="input-row">
+				<div>
+					<label>Dein Gewicht (kg)</label>
+					<input type="number" id="input-kalorien-gewicht" placeholder="70">
+				</div>
+				<div>
+					<label>Dauer (Minuten)</label>
+					<input type="number" id="input-kalorien-dauer" placeholder="30">
+				</div>
+				<div style="align-self: flex-end;">
+					<button onclick="berechneKalorien()">Berechnen</button>
+				</div>
+			</div>
+			<div id="output-kalorien" class="output"></div>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">📅</div>
+					Trainingsplan-Generator
+				</div>
+				<div class="section-desc">For-Schleife · Automatisch generierter Wochenplan</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<div class="input-row">
+				<div>
+					<label>Trainingstage pro Woche</label>
+					<input type="number" id="input-tage" placeholder="3" min="1" max="7">
+				</div>
+				<div>
+					<label>Ziel</label>
+					<input type="text" id="input-ziel" placeholder="z.B. Abnehmen">
+				</div>
+				<div style="align-self: flex-end;">
+					<button onclick="generiereTrainingsplan()">Plan erstellen</button>
+				</div>
+			</div>
+
+			<div id="fortschritt-container" style="display:none; margin-top: 16px;">
+				<div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+					Wochenfortschritt: <span id="fortschritt-label">0/7</span>
+				</div>
+				<div class="progress-track">
+					<div class="progress-fill" id="fortschritt-bar" style="width: 0%"></div>
+				</div>
+			</div>
+
+			<div id="output-trainingsplan" class="output mono"></div>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">△</div>
+					Wiederholungs-Pyramide
+				</div>
+				<div class="section-desc">For-Schleife (verschachtelt) · Aufwärm-Pyramide für Kraftsport</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<div class="input-row">
+				<div>
+					<label>Max. Sätze</label>
+					<input type="number" id="input-saetze" placeholder="5" min="1" max="10">
+				</div>
+				<div>
+					<label>Übung</label>
+					<input type="text" id="input-uebung" placeholder="z.B. Liegestütz">
+				</div>
+				<div style="align-self: flex-end;">
+					<button onclick="erstellePyramide()">Pyramide</button>
+				</div>
+			</div>
+			<div id="output-pyramide" class="output mono"></div>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">✓</div>
+					Trainingsprotokoll
+				</div>
+				<div class="section-desc">Formularüberprüfung · Eingabe validieren und auswerten</div>
+			</div>
+		</div>
+		<div class="section-body">
+
+			<div class="quiz-question">
+				<div class="quiz-q">Welche Übung hast du heute gemacht?</div>
+				<div class="quiz-row">
+					<input type="text" id="prot-uebung" placeholder="z.B. Bankdrücken">
+				</div>
+			</div>
+
+			<div class="quiz-question">
+				<div class="quiz-q">Wie viele Sätze hast du absolviert? (min. 3)</div>
+				<div class="quiz-row">
+					<input type="number" id="prot-saetze" placeholder="z.B. 4">
+					<button class="hint-btn" onclick="toggleHint('hint-saetze')">Tipp</button>
+				</div>
+				<div class="hint-text" id="hint-saetze">
+					💡 Für Kraftzuwachs empfehlen sich 3-6 Sätze pro Übung.
+				</div>
+			</div>
+
+			<div class="quiz-question">
+				<div class="quiz-q">Wie viele Wiederholungen pro Satz? (5-20)</div>
+				<div class="quiz-row">
+					<input type="number" id="prot-wiederh" placeholder="z.B. 10">
+				</div>
+			</div>
+
+			<div class="quiz-question">
+				<div class="quiz-q">Wie viel Gewicht (kg)? (größer als 0)</div>
+				<div class="quiz-row">
+					<input type="number" id="prot-gewicht" placeholder="z.B. 60">
+					<button class="hint-btn" onclick="toggleHint('hint-gewicht')">Tipp</button>
+				</div>
+				<div class="hint-text" id="hint-gewicht">
+					💡 Wähle ein Gewicht, das du mit guter Technik 8-12 Mal heben kannst.
+				</div>
+			</div>
+
+			<div class="quiz-question" style="border-bottom: none;">
+				<div class="quiz-q">Wie würdest du dein Training bewerten? (1-10)</div>
+				<div class="quiz-row">
+					<input type="number" id="prot-bewertung" placeholder="z.B. 8" min="1" max="10">
+				</div>
+			</div>
+
+			<button onclick="protokollAuswerten()">Training speichern</button>
+			<div id="output-protokoll" class="output"></div>
+		</div>
+	</div>
+
+</main>
+
+<script>
+
+function setBegruessung() {
+	var name = document.getElementById("input-name").value.trim();
+	if (name === "") {
+		document.getElementById("output-begruessung").innerHTML = "Bitte gib deinen Namen ein!";
+		return;
+	}
+
+	var stunde = new Date().getHours();
+	var gruss;
+	if (stunde < 11) { gruss = "Guten Morgen"; }
+	else if (stunde < 17) { gruss = "Guten Tag"; }
+	else { gruss = "Guten Abend"; }
+
+	document.getElementById("output-begruessung").innerHTML =
+		gruss + ", " + name + "! 💪 Bereit für dein Training?";
+}
+
+
+
+function berechneBMI() {
+	var gewicht = parseFloat(document.getElementById("input-gewicht").value);
+	var groesse = parseFloat(document.getElementById("input-groesse").value) / 100;
+	var output = document.getElementById("output-bmi");
+
+	if (!gewicht || !groesse) {
+		output.className = "output error";
+		output.innerHTML = "Bitte Gewicht und Größe eingeben.";
+		return;
+	}
+
+	var bmi = gewicht / (groesse * groesse);
+	var kategorie, empfehlung, css;
+
+	if (bmi < 18.5) {
+		kategorie = "Untergewicht";
+		empfehlung = "Fokus auf Krafttraining und kalorienreiche Ernährung.";
+		css = "output error";
+	} else if (bmi < 25) {
+		kategorie = "Normalgewicht";
+		empfehlung = "Super! Mix aus Kraft- und Ausdauertraining empfohlen.";
+		css = "output success";
+	} else if (bmi < 30) {
+		kategorie = "Übergewicht";
+		empfehlung = "Regelmäßiges Ausdauertraining und bewusste Ernährung.";
+		css = "output";
+	} else {
+		kategorie = "Adipositas";
+		empfehlung = "Sanftes Training (Schwimmen, Radfahren) und ärztliche Begleitung.";
+		css = "output error";
+	}
+
+	output.className = css;
+	output.innerHTML = "BMI: <b>" + bmi.toFixed(1) + "</b> — " + kategorie + "<br>" + empfehlung;
+}
+
+function kalorienBerechnen(gewicht, minuten, met) {
+	// MET-Formel: Kalorien = MET * Gewicht(kg) * Zeit(h)
+	return Math.round(met * gewicht * (minuten / 60));
+}
+
+function berechneKalorien() {
+	var gewicht = parseFloat(document.getElementById("input-kalorien-gewicht").value);
+	var dauer = parseFloat(document.getElementById("input-kalorien-dauer").value);
+	var output = document.getElementById("output-kalorien");
+
+	if (!gewicht || !dauer) {
+		output.className = "output error";
+		output.innerHTML = "Bitte Gewicht und Dauer eingeben.";
+		return;
+	}
+
+	var laufen = kalorienBerechnen(gewicht, dauer, 8.0);
+	var rad = kalorienBerechnen(gewicht, dauer, 6.0);
+	var schwimmen = kalorienBerechnen(gewicht, dauer, 7.0);
+
+
+	document.getElementById("stat-laufen").innerHTML = laufen + " kcal";
+	document.getElementById("stat-rad").innerHTML = rad + " kcal";
+	document.getElementById("stat-schwimmen").innerHTML = schwimmen + " kcal";
+
+	output.className = "output info";
+	output.innerHTML = "Berechnet für " + gewicht + " kg bei " + dauer + " Minuten.";
+}
+
+
+function generiereTrainingsplan() {
+	var tage = parseInt(document.getElementById("input-tage").value);
+	var ziel = document.getElementById("input-ziel").value.trim() || "Allgemeine Fitness";
+	var output = document.getElementById("output-trainingsplan");
+
+	if (!tage || tage < 1 || tage > 7) {
+		output.className = "output error";
+		output.innerHTML = "Bitte 1-7 Trainingstage eingeben.";
+		return;
+	}
+
+	var wochentage = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+	var uebungen = ["Laufen 30 min", "Krafttraining Oberkörper", "Radfahren 45 min",
+		"Krafttraining Unterkörper", "HIIT 20 min", "Yoga & Dehnen", "Schwimmen 40 min"];
+
+	var plan = "Trainingsplan - Ziel: " + ziel + "\n";
+	plan += "─".repeat(40) + "\n";
+
+	var trainingsIndex = 0;
+	for (var i = 0; i < 7; i++) {
+		if (trainingsIndex < tage) {
+			plan += "✓ " + wochentage[i] + ": " + uebungen[trainingsIndex % uebungen.length] + "\n";
+			trainingsIndex++;
+		} else {
+			plan += "○ " + wochentage[i] + ": Ruhetag\n";
+		}
+	}
+
+	// Fortschrittsbalken aktualisieren
+	var fortschrittProzent = Math.round((tage / 7) * 100);
+	document.getElementById("fortschritt-container").style.display = "block";
+	document.getElementById("fortschritt-label").innerHTML = tage + "/7 Tage";
+	document.getElementById("fortschritt-bar").style.width = fortschrittProzent + "%";
+
+	output.className = "output mono";
+	output.innerHTML = plan;
+}
+
+
+function erstellePyramide() {
+	var maxSaetze = parseInt(document.getElementById("input-saetze").value);
+	var uebung = document.getElementById("input-uebung").value.trim() || "Übung";
+	var output = document.getElementById("output-pyramide");
+
+	if (!maxSaetze || maxSaetze < 1) {
+		output.className = "output error";
+		output.innerHTML = "Bitte Anzahl Sätze eingeben.";
+		return;
+	}
+
+	var pyramide = uebung + " - Aufwärm-Pyramide\n";
+	pyramide += "─".repeat(30) + "\n";
+
+	// Äußere Schleife: Sätze
+	for (var satz = 1; satz <= maxSaetze; satz++) {
+		var wiederholungen = satz * 2;
+		var balken = "";
+		// Innere Schleife: visuelle Balken
+		for (var b = 0; b < satz; b++) {
+			balken += "█";
+		}
+		pyramide += "Satz " + satz + ": " + balken + "  " + wiederholungen + " Wdh.\n";
+	}
+
+	output.className = "output mono";
+	output.innerHTML = pyramide;
+}
+
+
+function toggleHint(id) {
+	var el = document.getElementById(id);
+	el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
+}
+
+function protokollAuswerten() {
+	var uebung = document.getElementById("prot-uebung").value.trim();
+	var saetze = parseInt(document.getElementById("prot-saetze").value);
+	var wiederh = parseInt(document.getElementById("prot-wiederh").value);
+	var gewicht = parseFloat(document.getElementById("prot-gewicht").value);
+	var bewertung = parseInt(document.getElementById("prot-bewertung").value);
+	var output = document.getElementById("output-protokoll");
+
+	var fehler = [];
+
+	if (!uebung) { fehler.push("Übung fehlt"); }
+	if (!saetze || saetze < 3) { fehler.push("Mindestens 3 Sätze erforderlich"); }
+	if (!wiederh || wiederh < 5 || wiederh > 20) { fehler.push("Wiederholungen müssen zwischen 5 und 20 liegen"); }
+	if (!gewicht || gewicht <= 0) { fehler.push("Gewicht muss größer als 0 sein"); }
+	if (!bewertung || bewertung < 1 || bewertung > 10) { fehler.push("Bewertung muss zwischen 1 und 10 liegen"); }
+
+	if (fehler.length > 0) {
+		output.className = "output error";
+		output.innerHTML = "Bitte korrigiere folgende Felder:<br>• " + fehler.join("<br>• ");
+		return;
+	}
+
+	var volumen = saetze * wiederh * gewicht;
+
+	var bewertungsText;
+	if (bewertung >= 8) { bewertungsText = "Ausgezeichnetes Training! 🔥"; }
+	else if (bewertung >= 5) { bewertungsText = "Solides Training. 💪"; }
+	else { bewertungsText = "Nicht dein bester Tag - morgen wird besser! 👍"; }
+
+	output.className = "output success";
+	output.innerHTML =
+		"<b>Training gespeichert!</b><br>" +
+		"Übung: " + uebung + " · " + saetze + " Sätze × " + wiederh + " Wdh. @ " + gewicht + " kg<br>" +
+		"Gesamtvolumen: <b>" + volumen + " kg</b><br>" +
+		"Bewertung: " + bewertung + "/10 - " + bewertungsText;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Übungen - If-Else</title>
+	<meta name="author" content="Max Garzon">
+	<link href="src/style.css" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
+</head>
+<body>
+
+<nav>
+	<div class="nav-logo">
+		<span class="logo-icon">JS</span>
+		JS Übungen
+	</div>
+	<a href="innerhtml.html">InnerHTML</a>
+	<a href="ifelse.html" class="active">If-Else</a>
+	<a href="funktionen.html">Funktionen</a>
+	<a href="for.html">For-Schleife</a>
+	<a href="formularueberpruefung.html">Formular</a>
+	<a href="eigenes-projekt.html">Eigenes Projekt</a>
+</nav>
+
+<main>
+	<div class="page-header">
+		<div class="badge">✦ If-Else-Abfrage</div>
+		<h1>Reise-Assistent</h1>
+		<p>If-Else-Abfragen prüfen Bedingungen und steuern den Programmablauf.<br>
+		Hier baust du einen Reiseberater, der je nach Eingabe verschiedene Empfehlungen gibt.</p>
+	</div>
+
+
+	<!-- Aufgabe 1 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">🍂</div>Aktuelle Jahreszeit</div>
+				<div class="section-desc">If-Else · Monat auslesen und Jahreszeit bestimmen</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Lies das aktuelle Monat aus (<code style="color:var(--accent-light)">new Date().getMonth()</code>) und gib die passende Jahreszeit aus: Frühling (3-5), Sommer (6-8), Herbst (9-11), Winter (sonst).
+			</p>
+			<div id="out-jahreszeit" class="output"></div>
+
+			<script>
+				// Aufgabe: Aktuelles Monat auslesen, Jahreszeit bestimmen
+				// Ergebnis in #out-jahreszeit ausgeben
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 2 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">✈️</div>Reisedestination</div>
+				<div class="section-desc">If-Else mit Userinput · Budget bestimmt das Ziel</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Der Benutzer gibt sein Reisebudget ein (€). Abhängig davon wird ein Reiseziel empfohlen:<br>
+				unter 500€ → Camping im Inland · 500-1500€ → Europa · über 1500€ → Fernreise
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Budget (€)</label>
+					<input type="number" id="inp-budget" placeholder="z.B. 800">
+				</div>
+				<button onclick="empfehleReise()">Empfehlung</button>
+			</div>
+			<div id="out-reise" class="output"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion empfehleReise()
+				// Budget auslesen, per If-Else das passende Reiseziel bestimmen
+				// Ergebnis in #out-reise ausgeben
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 3 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">🧳</div>Gepäckcheck</div>
+				<div class="section-desc">Verschachtelte If-Else · Mehrere Bedingungen kombinieren</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Fluggesellschaften haben unterschiedliche Gepäckregeln. Prüfe ob das Gepäck erlaubt ist:<br>
+				Handgepäck: max. 10 kg und max. 55 cm Länge. Gibt beides aus (OK / zu schwer / zu groß / beides).
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Gewicht (kg)</label>
+					<input type="number" id="inp-gepaeck-kg" placeholder="z.B. 8">
+				</div>
+				<div>
+					<label>Länge (cm)</label>
+					<input type="number" id="inp-gepaeck-cm" placeholder="z.B. 50">
+				</div>
+				<button onclick="gepäckCheck()">Prüfen</button>
+			</div>
+			<div id="out-gepaeck" class="output"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion gepäckCheck()
+				// Beide Werte prüfen: zu schwer (>10kg), zu groß (>55cm), beides, oder OK
+				// Ergebnis in #out-gepaeck ausgeben
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 4 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">📅</div>Wochentag-Check</div>
+				<div class="section-desc">If-Else · getDay() auslesen und als Text ausgeben</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Lies den aktuellen Wochentag aus (<code style="color:var(--accent-light)">new Date().getDay()</code>, 0 = Sonntag). Ist heute ein Werktag oder Wochenende? Gib beides aus.
+			</p>
+			<div id="out-wochentag" class="output"></div>
+
+			<script>
+				// Aufgabe: Wochentag auslesen, als Text ausgeben
+				// Zusätzlich prüfen: Werktag (Mo-Fr) oder Wochenende (Sa, So)?
+				// Ergebnis in #out-wochentag ausgeben
+			</script>
+		</div>
+	</div>
+
+</main>
+</body>
+</html>

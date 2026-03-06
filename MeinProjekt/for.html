@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Übungen - For-Schleife</title>
+	<meta name="author" content="Max Garzon">
+	<link href="src/style.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
+</head>
+<body>
+
+<nav>
+	<div class="nav-logo">
+		<span class="logo-icon">JS</span>
+		JS Übungen
+	</div>
+	<a href="innerhtml.html">InnerHTML</a>
+	<a href="ifelse.html">If-Else</a>
+	<a href="funktionen.html">Funktionen</a>
+	<a href="for.html" class="active">For-Schleife</a>
+	<a href="formularueberpruefung.html">Formular</a>
+	<a href="eigenes-projekt.html">Eigenes Projekt</a>
+</nav>
+
+<main>
+	<div class="page-header">
+		<div class="badge">✦ For-Schleife</div>
+		<h1>Musik-Tools</h1>
+		<p>For-Schleifen wiederholen Code eine bestimmte Anzahl an Mal.<br>
+		Hier baust du verschiedene Musik- und Playlist-Tools damit.</p>
+	</div>
+
+
+	<!-- Aufgabe 1 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">🔁</div>Countdown-Timer</div>
+				<div class="section-desc">Einfache For-Schleife · Zahlen absteigend ausgeben</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Erstelle einen Countdown von einer eingegebenen Zahl bis 1. Jede Zahl soll im Div erscheinen. Bei 1 soll "Musik starten!" stehen.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Start bei</label>
+					<input type="number" id="inp-countdown" placeholder="10" min="1" max="30">
+				</div>
+				<button onclick="starteCountdown()">Countdown</button>
+			</div>
+			<div id="out-countdown" class="output mono"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion starteCountdown()
+				// For-Schleife von eingegebener Zahl abwärts bis 1
+				// Am Ende "Musik starten!" anhängen, alles in #out-countdown
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 2 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">🎵</div>Playlist-Generator</div>
+				<div class="section-desc">For-Schleife mit Array · Lieder nummeriert ausgeben</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Frage ab, wie viele Tracks die Playlist haben soll (max. 8). Die Tracknamen sind vordefiniert. Gib die Playlist mit Nummerierung und Dauer aus.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Anzahl Tracks (1-8)</label>
+					<input type="number" id="inp-tracks" placeholder="5" min="1" max="8">
+				</div>
+				<button onclick="generierePlaylist()">Playlist erstellen</button>
+			</div>
+			<div id="out-playlist" class="output mono"></div>
+
+			<script>
+				// Vordefiniertes Array mit Songs (nicht ändern):
+				var songs = [
+					{ titel: "Blinding Lights", dauer: "3:20" },
+					{ titel: "Levitating", dauer: "3:23" },
+					{ titel: "Stay", dauer: "2:38" },
+					{ titel: "Peaches", dauer: "3:18" },
+					{ titel: "Good 4 U", dauer: "2:58" },
+					{ titel: "Industry Baby", dauer: "3:32" },
+					{ titel: "Montero", dauer: "2:18" },
+					{ titel: "Heat Waves", dauer: "3:59" }
+				];
+
+				// Aufgabe: Schreibe die Funktion generierePlaylist()
+				// Anzahl auslesen, For-Schleife über das Array, nummeriert in #out-playlist ausgeben
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 3 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">⭐</div>Sterne-Bewertung</div>
+				<div class="section-desc">For-Schleife · Visuelle Darstellung per Zeichen</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Der Nutzer gibt eine Bewertung (1-5) ein. Stelle sie mit ★ (gefüllt) und ☆ (leer) dar.<br>
+				Bsp. bei 3: <code style="color:var(--accent-light)">★★★☆☆</code> — und gib dazu eine Textbewertung aus.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Bewertung (1-5)</label>
+					<input type="number" id="inp-sterne" placeholder="4" min="1" max="5">
+				</div>
+				<button onclick="zeigeSterne()">Anzeigen</button>
+			</div>
+			<div id="out-sterne" class="output"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion zeigeSterne()
+				// For-Schleife von 1-5: wenn i <= wert dann ★, sonst ☆
+				// Zusätzlich per If-Else einen Bewertungstext bestimmen
+				// Alles in #out-sterne ausgeben
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 4 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">🎤</div>Konzert-Setlist</div>
+				<div class="section-desc">Verschachtelte For-Schleifen · Sets und Songs</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Ein Konzert hat mehrere Sets, jedes Set hat mehrere Songs. Frage Anzahl Sets und Songs pro Set ab. Gib die vollständige Setlist aus (Set 1: Song 1.1, Song 1.2 …).
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Anzahl Sets</label>
+					<input type="number" id="inp-sets" placeholder="3" min="1" max="5">
+				</div>
+				<div>
+					<label>Songs pro Set</label>
+					<input type="number" id="inp-songs-pro-set" placeholder="4" min="1" max="8">
+				</div>
+				<button onclick="generiereSetlist()">Setlist</button>
+			</div>
+			<div id="out-setlist" class="output mono"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion generiereSetlist()
+				// Äußere Schleife: Sets, innere Schleife: Songs pro Set
+				// Ausgabe: "Set 1:", darunter "  Track 1.1", "  Track 1.2" etc.
+				// Ergebnis in #out-setlist
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 5 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">🔊</div>Lautstärke-Anzeige</div>
+				<div class="section-desc">For-Schleife · Visuelle Balkenausgabe</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Der Nutzer gibt die Lautstärke (0-100) ein. Stelle sie als 10-teiligen Balken dar:<br><br>
+				<code style="color:var(--accent-light)">70% → ███████░░░</code>
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Lautstärke (0-100)</label>
+					<input type="number" id="inp-lautstaerke" placeholder="70" min="0" max="100">
+				</div>
+				<button onclick="zeigeLautstaerke()">Anzeigen</button>
+			</div>
+			<div id="out-lautstaerke" class="output"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion zeigeLautstaerke()
+				// Lautstärke auf 10 Balken umrechnen (Math.round(vol / 10))
+				// For-Schleife: gefüllte Balken █ und leere ░ zusammenbauen
+				// Ergebnis in #out-lautstaerke ausgeben
+			</script>
+		</div>
+	</div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Übungen - Funktionen</title>
+	<meta name="author" content="Max Garzon">
+	<link href="src/style.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
+</head>
+<body>
+
+<nav>
+	<div class="nav-logo">
+		<span class="logo-icon">JS</span>
+		JS Übungen
+	</div>
+	<a href="innerhtml.html">InnerHTML</a>
+	<a href="ifelse.html">If-Else</a>
+	<a href="funktionen.html" class="active">Funktionen</a>
+	<a href="for.html">For-Schleife</a>
+	<a href="formularueberpruefung.html">Formular</a>
+	<a href="eigenes-projekt.html">Eigenes Projekt</a>
+</nav>
+
+<main>
+	<div class="page-header">
+		<div class="badge">✦ Funktionen</div>
+		<h1>Finanz-Rechner</h1>
+		<p>Funktionen bündeln wiederverwendbaren Code und nehmen Parameter entgegen.<br>
+		Hier baust du verschiedene Finanz-Tools mit eigenen Funktionen.</p>
+	</div>
+
+
+	<!-- Aufgabe 1 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">📋</div>Kontoauszug (Konsole)</div>
+				<div class="section-desc">Funktion mit Parametern · Ausgabe per console.log()</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Erstelle eine Funktion <code style="color:var(--accent-light)">kontoauszug(name, kontonr, saldo)</code>, die einen formatierten Kontoauszug in der Konsole ausgibt. Öffne die Browser-Konsole (F12) um die Ausgabe zu sehen.
+			</p>
+			<button onclick="kontoauszug('Max Muster', 'AT12 3456 7890', 1250.50)">Auszug in Konsole</button>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion kontoauszug(name, kontonr, saldo)
+				// Gibt Name, IBAN, Saldo und aktuelles Datum per console.log() aus
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 2 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">💸</div>Trinkgeld-Rechner</div>
+				<div class="section-desc">Funktion mit return · Ergebnis weiterverarbeiten</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Schreibe eine Funktion <code style="color:var(--accent-light)">trinkgeld(betrag, prozent)</code>, die das Trinkgeld berechnet und zurückgibt. Gib Trinkgeld und Gesamtbetrag im Div aus.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Rechnungsbetrag (€)</label>
+					<input type="number" id="inp-rechnung" placeholder="45.00">
+				</div>
+				<div>
+					<label>Trinkgeld (%)</label>
+					<input type="number" id="inp-tg-prozent" placeholder="10">
+				</div>
+				<button onclick="berechneTriinkgeld()">Berechnen</button>
+			</div>
+			<div id="out-trinkgeld" class="output"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion trinkgeld(betrag, prozent) mit return
+				// Dann berechneTriinkgeld(): Werte auslesen, Funktion aufrufen, Ergebnis in #out-trinkgeld
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 3 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">📈</div>Zinsrechner</div>
+				<div class="section-desc">Standardparameter · Fehlende Werte automatisch ersetzen</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Erstelle eine Funktion <code style="color:var(--accent-light)">zinsen(kapital, zinssatz = 3, jahre = 1)</code>. Wird kein Zinssatz oder keine Laufzeit angegeben, werden Standardwerte (3% / 1 Jahr) verwendet.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Kapital (€)</label>
+					<input type="number" id="inp-kapital" placeholder="1000">
+				</div>
+				<div>
+					<label>Zinssatz (%, Standard: 3)</label>
+					<input type="number" id="inp-zins" placeholder="3">
+				</div>
+				<div>
+					<label>Jahre (Standard: 1)</label>
+					<input type="number" id="inp-jahre" placeholder="1">
+				</div>
+				<button onclick="berechneZinsen()">Berechnen</button>
+			</div>
+			<div id="out-zinsen" class="output"></div>
+
+			<script>
+				// Aufgabe: Funktion zinsen(kapital, zinssatz = 3, jahre = 1) mit Standardparametern
+				// berechneZinsen(): Eingaben auslesen, Funktion aufrufen, Ergebnis in #out-zinsen
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 4 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">💱</div>Währungsrechner</div>
+				<div class="section-desc">onclick + Funktion · Euro in andere Währungen umrechnen</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Gib einen Betrag in Euro ein. Per Klick auf den jeweiligen Button wird in die gewünschte Währung umgerechnet und das Ergebnis in <code style="color:var(--accent-light)">#out-waehrung</code> ausgegeben.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Betrag (€)</label>
+					<input type="number" id="inp-euro" placeholder="100">
+				</div>
+			</div>
+			<div class="input-row">
+				<button onclick="rechneUm('USD', 1.08)">→ US-Dollar</button>
+				<button onclick="rechneUm('GBP', 0.85)" class="secondary">→ Britische Pfund</button>
+				<button onclick="rechneUm('JPY', 160)" class="secondary">→ Japanische Yen</button>
+			</div>
+			<div id="out-waehrung" class="output"></div>
+
+			<script>
+				// Aufgabe: Schreibe die Funktion rechneUm(waehrung, kurs)
+				// Sie soll den Euro-Betrag mit dem Kurs multiplizieren
+				// Ergebnis in #out-waehrung ausgeben
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 5 -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title"><div class="icon">🎓</div>Kreditwürdigkeit</div>
+				<div class="section-desc">Funktion + If-Else · Score berechnen und bewerten</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Berechne einen einfachen Kredit-Score. Eingabe: monatliches Einkommen und monatliche Ausgaben. Ausgabe: Sparquote in % und Bewertung (ausgezeichnet / gut / knapp / kritisch).
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Monatseinkommen (€)</label>
+					<input type="number" id="inp-einkommen" placeholder="2500">
+				</div>
+				<div>
+					<label>Monatliche Ausgaben (€)</label>
+					<input type="number" id="inp-ausgaben" placeholder="2000">
+				</div>
+				<button onclick="berechneScore()">Score berechnen</button>
+			</div>
+			<div id="out-score" class="output"></div>
+
+			<script>
+				// Aufgabe: Funktion sparquote(einkommen, ausgaben) schreiben (gibt % zurück)
+				// berechneScore(): Sparquote berechnen, per If-Else bewerten, in #out-score ausgeben
+				// Bewertung: ≥30% ausgezeichnet, ≥15% gut, ≥5% knapp, sonst kritisch
+			</script>
+		</div>
+	</div>
+
+</main>
+</body>
+</html>

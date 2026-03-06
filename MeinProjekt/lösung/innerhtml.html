@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Übungen - InnerHTML</title>
+	<meta name="author" content="Max Garzon">
+	<link href="src/style.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico">
+</head>
+<body>
+
+<nav>
+	<div class="nav-logo">
+		<span class="logo-icon">JS</span>
+		JS Übungen
+	</div>
+	<a href="innerhtml.html" class="active">InnerHTML</a>
+	<a href="ifelse.html">If-Else</a>
+	<a href="funktionen.html">Funktionen</a>
+	<a href="for.html">For-Schleife</a>
+	<a href="formularueberpruefung.html">Formular</a>
+	<a href="eigenes-projekt.html">Eigenes Projekt</a>
+</nav>
+
+<main>
+	<div class="page-header">
+		<div class="badge">✦ InnerHTML</div>
+		<h1>Produkt-Karte</h1>
+		<p>Mit innerHTML können Inhalte dynamisch in HTML-Elemente geschrieben werden.<br>
+		Hier baust du eine Live-Produktkarte, die sich beim Tippen sofort aktualisiert.</p>
+	</div>
+
+
+	<!-- Aufgabe 1: Einfaches innerHTML -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">1</div>
+					Produktname ausgeben
+				</div>
+				<div class="section-desc">Grundlagen · Texteingabe in ein Div schreiben</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Gib einen Produktnamen ein. Er soll sofort im Div darunter als Überschrift erscheinen.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Produktname</label>
+					<input type="text" id="inp-produktname" placeholder="z.B. Sneaker Pro 3000" oninput="zeigeProduktname()">
+				</div>
+			</div>
+			<div id="out-produktname" class="output"></div>
+
+			<script>
+				function zeigeProduktname() {
+					var name = document.getElementById("inp-produktname").value;
+					document.getElementById("out-produktname").innerHTML = "<b>" + name + "</b>";
+				}
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 2: Mehrere Felder kombinieren -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">2</div>
+					Vollständige Produktkarte
+				</div>
+				<div class="section-desc">innerHTML mit mehreren Eingaben kombinieren</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Fülle alle Felder aus und klicke auf "Karte generieren". Im Div soll eine formatierte Produktkarte erscheinen mit Name, Preis und Beschreibung.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Name</label>
+					<input type="text" id="karte-name" placeholder="Produktname">
+				</div>
+				<div>
+					<label>Preis (€)</label>
+					<input type="number" id="karte-preis" placeholder="49.99">
+				</div>
+			</div>
+			<div class="input-row">
+				<div>
+					<label>Beschreibung</label>
+					<input type="text" id="karte-beschr" placeholder="Kurze Beschreibung...">
+				</div>
+				<button onclick="generiereKarte()">Karte generieren</button>
+			</div>
+			<div id="out-karte" class="output"></div>
+
+			<script>
+				function generiereKarte() {
+					var name = document.getElementById("karte-name").value;
+					var preis = document.getElementById("karte-preis").value;
+					var beschr = document.getElementById("karte-beschr").value;
+
+					document.getElementById("out-karte").innerHTML =
+						"<b>" + name + "</b><br>" + preis + " €<br>" +
+						"Info: " + beschr;
+				}
+			</script>
+		</div>
+	</div>
+
+
+	<!-- Aufgabe 3: innerHTML erweitern vs. überschreiben -->
+	<div class="section">
+		<div class="section-header">
+			<div>
+				<div class="section-title">
+					<div class="icon">3</div>
+					Warenkorb
+				</div>
+				<div class="section-desc">innerHTML += · Inhalte anhängen statt überschreiben</div>
+			</div>
+		</div>
+		<div class="section-body">
+			<p style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+				Jeder Klick auf "Hinzufügen" soll einen Artikel in den Warenkorb eintragen, ohne die vorherigen zu löschen. Nutze dafür <code style="color: var(--accent-light);">+=</code> statt <code style="color: var(--accent-light);">=</code>.
+			</p>
+			<div class="input-row">
+				<div>
+					<label>Artikel</label>
+					<input type="text" id="warenkorb-artikel" placeholder="Artikel eingeben">
+				</div>
+				<button onclick="artikelHinzufuegen()">Hinzufügen</button>
+				<button class="secondary" onclick="document.getElementById('out-warenkorb').innerHTML=''">Leeren</button>
+			</div>
+			<div id="out-warenkorb" class="output"></div>
+
+			<script>
+				function artikelHinzufuegen() {
+					var artikel = document.getElementById("warenkorb-artikel").value;
+					if (artikel === "") return;
+					document.getElementById("out-warenkorb").innerHTML += "• " + artikel + "<br>";
+					document.getElementById("warenkorb-artikel").value = "";
+				}
+			</script>
+		</div>
+	</div>
+
+</main>
+</body>
+</html>
